@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Italiana&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sarpanch:wght@400;500;600;700;800;900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -8,19 +10,66 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.hidden {
+  display: none !important;
+}
+/*________________________________________________
+            __Start Screen__
+________________________________________________*/
+
+#start-screen {
+  font-family: 1.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#start-button {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  background-color: #00b4d8; /* Pandora Blue */
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 .title {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 40px;
 }
+
 .title h1 {
-  font-family:
-    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  display: flex;
+  background-image: linear-gradient(#00b4d8, green);
+  background-clip: text;
+  color: transparent;
+  font-family: "montserrat", serif;
+  font-weight: 800;
+  text-align: center;
+  font-style: normal;
   font-size: 4.5rem;
   padding: 20px;
 }
+.title p {
+  display: flex;
+  background-image: linear-gradient(#d80000, rgb(255, 213, 1));
+  background-clip: text;
+  color: transparent;
+  font-family: "montserrat", serif;
+  font-weight: 400;
+  text-align: center;
+  font-style: normal;
+  font-size: 1.5rem;
+  padding: 20px;
+}
+/*________________________________________________
+            __Trivia Container__
+________________________________________________*/
 #quiz-container {
   width: 900px;
   height: 500px;
@@ -43,6 +92,9 @@ body {
   font-size: 4.5rem;
   padding: 20px;
 }
+.option-btn {
+}
+
 #score-container {
 }
 #next-button {
@@ -54,4 +106,29 @@ body {
   position: absolute;
   bottom: 35%;
   left: 70%;
+}
+#feedback-message {
+  color: green;
+  font-size: 1em;
+}
+
+.correct {
+  background-color: #2ecc71 !important;
+  color: white;
+  border: 2px solid #27ae60;
+  box-shadow: 0 0 15px #2ecc71;
+  transition: all 0.5s ease;
+}
+
+.wrong {
+  background-color: #e74c3c !important;
+  color: white;
+  border: 2px solid #c0392b;
+  box-shadow: 0 0 15px #e74c3c;
+  transition: all 0.5s ease;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
 }

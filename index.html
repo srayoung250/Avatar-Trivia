@@ -9,16 +9,29 @@
   <body>
     <div class="title">
       <h1>James Cameron's Avatar Trivia</h1>
-      <div id="quiz-container">
+      <!-- 1. The Start Screen -->
+      <div id="start-screen">
+        <p>Test your knowledge of Pandora</p>
+        <button id="start-button">Start Trivia</button>
+      </div>
+      <!-- The Trivia Screen-->
+      <div id="quiz-container" class="hidden">
         <h2>Movies One Two & Three</h2>
+        <p id="feedback-message"></p>
         <div id="options-container"></div>
         <div id="score-container" class="hidden">
           <h2>Your Score</h2>
           <p id="score"></p>
         </div>
-        <button id="next-button">Next Question</button>
-        <button id="restart-button">Restart Button</button>
+        <button id="next-button" class="hidden">Next Question</button>
+      </div>
+      <!--The Results Screen-->
+      <div id="results-screen" class="hidden">
+        <h1>Completed</h1>
+        <p id="final-score"></p>
+        <button id="restart-button">Try Again</button>
       </div>
     </div>
+    <script src="/javascript.js"></script>
   </body>
 </html>

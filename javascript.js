@@ -1,4 +1,4 @@
-const avaterData = [
+const avatarData = [
   {
     question:
       "What is the scientific name for the mineral that humans are mining on Pandora?",
@@ -37,7 +37,7 @@ const avaterData = [
     question:
       "Who is the leader of this new (fire) tribe, played by actress Oona Chaplin?",
     options: ["Mo'at", "Ronal", "Tsireya", "Varang"],
-    answer: O,
+    answer: 3,
   },
   {
     question:
@@ -68,3 +68,88 @@ const avaterData = [
     answer: 3,
   },
 ];
+
+let currentQuestionIndex = 0;
+let score = 0;
+
+const optionsContainer = document.getElementById("options-container"),
+  feedbackText = document.getElementById("feedback-message"),
+  resultsScreen = document.getElementById("results-screen"),
+  finalScoreText = document.getElementById("final-score"),
+  restartButton = document.getElementById("restart-button"),
+  nextButton = document.getElementById("next-button"),
+  startButton = document.getElementById("start-button"),
+  startScreen = document.getElementById("start-screen"),
+  quizContainer = document.getElementById("quiz-container"),
+  questionHeading = document.querySelector("#quiz-container h2");
+
+// The Start Event
+startButton.addEventListener("click", () => {
+  startScreen.classList.add("hidden");
+  quizContainer.classList.remove("hidden");
+  showQuestion();
+});
+
+// Function to Handle Clicks & Answers
+function selectOption(index) {
+  const currentQuestion = avatarData[currentQuestionIndex],
+    buttons = optionsContainer.querySelectorAll("button");
+
+  buttons.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === currentQuestion.answer) {
+      btn.classList.add("correct");
+    } else if (i === index) {
+      btn.classList.add("wrong");
+    }
+  });
+  if (index === currentQuestion.answer) {
+    score++;
+    feedbackText.textContent = "Correct! I see you. 🏹";
+  } else {
+    feedbackText.textContent = "Wrong! You are like a baby, making noise.";
+  }
+  nextButton.classList.remove("hidden");
+}
+
+// The Next Button Event Ending
+nextButton.addEventListener("click", () => {
+  currentQuestionIndex++;
+  if (currentQuestionIndex < avatarData.length) {
+    showQuestion();
+  } else {
+    showResults();
+  }
+});
+
+// Function to Build the Question
+function showQuestion() {
+  const currentQuestion = avatarData[currentQuestionIndex];
+
+  optionsContainer.innerHTML = "";
+  feedbackText.textContent = "";
+  nextButton.classList.add("hidden");
+
+  questionHeading.textContent = currentQuestion.question;
+
+  currentQuestion.options.forEach((optionText, index) => {
+    const btn = document.createElement("button");
+    btn.classList.add("option-btn");
+    btn.textContent = optionText;
+    btn.addEventListener("click", () => selectOption(index));
+    optionsContainer.appendChild(btn);
+  });
+}
+// Show the Final Score
+function showResults() {
+  quizContainer.classList.add("hidden");
+  resultsScreen.classList.remove("hidden");
+  finalScoreText.textContent = `You scored ${score} out of ${avatarData.length}!`;
+}
+// Restart Button for the end
+restartButton.addEventListener("click", () => {
+  score = 0;
+  currentQuestionIndex = 0;
+  resultsScreen.classList.add("hidden");
+  startScreen.classList.remove("hidden");
+});
