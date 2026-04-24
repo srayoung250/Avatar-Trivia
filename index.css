@@ -71,6 +71,9 @@ ________________________________________________*/
             __Trivia Container__
 ________________________________________________*/
 #quiz-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 900px;
   height: 500px;
   border-color: black;
@@ -85,6 +88,8 @@ ________________________________________________*/
   font-size: 2.5rem;
 }
 #options-container {
+  display: flex;
+  justify-content: space-around;
   position: relative;
   font-family:
     "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
@@ -93,23 +98,54 @@ ________________________________________________*/
   padding: 20px;
 }
 .option-btn {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  background-color: #00b4d8; /* Pandora Blue */
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
-#score-container {
-}
 #next-button {
-  position: absolute;
-  bottom: 35%;
-  left: 60%;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  background-color: #00b4d8; /* Pandora Blue */
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+/*________________________________________________
+            __Results Screen__
+________________________________________________*/
+#results-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 #restart-button {
-  position: absolute;
-  bottom: 35%;
-  left: 70%;
+  display: flex;
+  justify-content: center;
+  max-width: 200px;
+  cursor:pointer;
+  font-family: "montserrat", serif;
+  font-weight: 400;
+  text-align: center;
+  font-style: normal;
+  font-size: 2rem;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #2ecc71 !important;
+  color: white;
+  border: 2px solid #27ae60;
+  transition: all 0.5s ease;
+}
+#restart-button:hover {
+box-shadow: 0 0 15px #2ecc71;
+ background-color: #89caa4a6 !important;
 }
 #feedback-message {
   color: green;
-  font-size: 1em;
+  font-size: 2em;
 }
 
 .correct {
@@ -131,4 +167,30 @@ ________________________________________________*/
 button:disabled {
   cursor: not-allowed;
   opacity: 0.8;
+}
+#results-screen h1 {
+  display: flex;
+  justify-content: center;
+  background-image: linear-gradient(#d80000, rgb(255, 213, 1));
+  background-clip: text;
+  color: transparent;
+  font-family: "montserrat", serif;
+  font-weight: 400;
+  text-align: center;
+  font-style: normal;
+  font-size: 4rem;
+  padding: 20px;
+}
+#results-screen #final-score {
+  display: flex;
+  justify-content: center;
+  background-image: linear-gradient(#d80000, rgb(255, 213, 1));
+  background-clip: text;
+  color: transparent;
+  font-family: "montserrat", serif;
+  font-weight: 400;
+  text-align: center;
+  font-style: normal;
+  font-size: 4rem;
+  padding: 20px;
 }
