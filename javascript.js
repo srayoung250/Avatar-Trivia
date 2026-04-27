@@ -24,7 +24,7 @@ const avatarData = [
   },
   {
     question:
-      "The third film will introduce a more aggressive tribe of Na'vi known as what?",
+      "The most aggressive tribe of Na'vi are known as who?",
     options: [
       "The Shadow Clan",
       "The Ash People",
@@ -35,7 +35,7 @@ const avatarData = [
   },
   {
     question:
-      "Who is the leader of this new (fire) tribe, played by actress Oona Chaplin?",
+      "Who is the leader of the (fire) tribe, played by actress Oona Chaplin?",
     options: ["Mo'at", "Ronal", "Tsireya", "Varang"],
     answer: 3,
   },
@@ -103,17 +103,36 @@ function selectOption(index) {
       btn.classList.add("wrong");
     }
   });
+  let message ="";
   if (index === currentQuestion.answer) {
     score++;
-    feedbackText.textContent = "Correct! I see you. 🏹";
+   message = "Correct! I see you. 🏹";
   } else {
-    feedbackText.textContent = "Wrong! You are like a baby, making noise.";
+   message = "Wrong! You are like a baby, making noise.";
   }
+  feedbackText.classList.add("show");
+  typeWriter(feedbackText, message, 20);
   nextButton.classList.remove("hidden");
 }
+// Function Question Typewriter 
+function typeWriter(element, text, speed = 30, callback) {
+  element.textContent = "";
+  let i = 0;
+  function type() {
+    if  (i < text.length) {
+      element.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    } else if (callback) {
+      callback();
+    }
+  }
+  type();
+}
 
-// The Next Button Event Ending
+// The Next Button Ending
 nextButton.addEventListener("click", () => {
+  feedbackText.classList.remove("show");
   currentQuestionIndex++;
   if (currentQuestionIndex < avatarData.length) {
     showQuestion();
@@ -128,18 +147,20 @@ function showQuestion() {
 
   optionsContainer.innerHTML = "";
   feedbackText.textContent = "";
+  feedbackText.classList.remove("show");
   nextButton.classList.add("hidden");
 
-  questionHeading.textContent = currentQuestion.question;
-
-  currentQuestion.options.forEach((optionText, index) => {
-    const btn = document.createElement("button");
-    btn.classList.add("option-btn");
-    btn.textContent = optionText;
-    btn.addEventListener("click", () => selectOption(index));
-    optionsContainer.appendChild(btn);
+  typeWriter(questionHeading, currentQuestion.question, 20, () => {
+    currentQuestion.options.forEach((optionText, index) => {
+      const btn = document.createElement("button");
+      btn.classList.add("option-btn");
+      btn.textContent = optionText;
+      btn.addEventListener("click", () => selectOption(index));
+      optionsContainer.appendChild(btn);
   });
+});
 }
+
 // Show the Final Score
 function showResults() {
   quizContainer.classList.add("hidden");

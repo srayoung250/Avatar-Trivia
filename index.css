@@ -9,10 +9,21 @@
 body {
   display: flex;
   flex-direction: column;
+  background-color: black;
 }
 
 .hidden {
   display: none !important;
+}
+
+:root{
+  --main-color: rgb(0, 0, 0);
+  --pandora-blue:#6fc5d6;
+  --pandora-green: #2ecc71;
+  --text-color: white;
+  --primary-txt:"Montserrat", Geneva, Verdana, sans-serif;
+  --main-txt: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 /*________________________________________________
             __Start Screen__
@@ -74,45 +85,100 @@ ________________________________________________*/
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 900px;
-  height: 500px;
-  border-color: black;
-  border-style: solid;
-  border-radius: 10px;
+  width: 90%;
+  max-width: 900px;
+  height: auto;
   padding: 20px;
+  position: relative;
+  background-color: var(--main-color);
+  border-radius: 10px;
+  transition: .5s ease-in-out;
+}
+#quiz-container::after,
+#quiz-container::before {
+  position: absolute;
+  content: '';
+  height: 100%;
+  width: 100%;
+  top:50%;
+  left:50%;
+  background: conic-gradient(#2ecc71,#00b4d8 ,#2ecc71);
+  padding: 10px;
+  translate: -50% -50%;
+  z-index: -1;
+  border-radius: 10px;
+}
+#quiz-container::before{
+  filter: blur(1.5rem);
+  opacity: 0.9;
 }
 #quiz-container h2 {
   display: flex;
-  justify-content: center;
+  font-family: var(--main-txt);
+  text-align: left;
   align-items: center;
   font-size: 2.5rem;
+  color: var(--text-color);
 }
 #options-container {
   display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
   justify-content: space-around;
   position: relative;
-  font-family:
-    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: var(--primary-txt);
   font-size: 4.5rem;
   padding: 20px;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);}
+    to { opacity: 1;
+    transform:  translateY(0);}
+  
 }
 .option-btn {
   padding: 15px 30px;
   font-size: 1.2rem;
-  background-color: #00b4d8; /* Pandora Blue */
+    font-family:var(--primary-txt);
+  background-color: var(--pandora-blue);
   color: white;
   border-radius: 10px;
   cursor: pointer;
+  animation: fadeIn 3s ease forwards;
 }
-
+.option-btn:hover {
+  background-color: #6fc5d6; 
+  color: white;
+  transition: all 0.5s ease;
+  box-shadow: 0 0 15px var(--pandora-green);
+}
+#feedback-message{
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 1s ease-in-out;
+  margin-top: 15px;
+  text-align: center;
+}
+#feedback-message.show{
+  opacity: 1;
+  transform: scale(1);
+}
 #next-button {
   padding: 15px 30px;
   font-size: 1.2rem;
-  background-color: #00b4d8; /* Pandora Blue */
+  background-color: #00b4d8; 
   color: white;
   border-radius: 10px;
   cursor: pointer;
+  animation: fadeIn 2s ease forwards;
+}
+#next-button:hover {
+  background-color: var(--pandora-blue); 
+  color: white;
+  transition: all 0.5s ease;
+  box-shadow: 0 0 15px #2ecc71;
 }
 /*________________________________________________
             __Results Screen__
@@ -120,8 +186,8 @@ ________________________________________________*/
 #results-screen {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-}
+  align-items: center;
+  }
 #restart-button {
   display: flex;
   justify-content: center;
